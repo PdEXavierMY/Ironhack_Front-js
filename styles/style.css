@@ -1,0 +1,75 @@
+/* Estilo para el cuerpo de la página */
+body {
+    background-color: #f2f2f2;
+    font-family: Arial, sans-serif;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+}
+
+/* Estilo para el encabezado principal */
+h1 {
+    color: #333;
+}
+
+/* Estilo para los párrafos de introducción y reglas */
+p {
+    color: #666;
+    max-width: 600px;
+    margin: 0 auto 20px;
+}
+
+/* Estilo para la lista de reglas */
+ol {
+    text-align: left;
+    max-width: 600px;
+    margin: 0 auto 20px;
+}
+
+/* Estilo para los elementos de la lista de reglas */
+li {
+    color: #333;
+}
+
+/* Estilo para el formulario de introducir nombre */
+form {
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+/* Estilo para las etiquetas de formulario */
+label {
+    display: block;
+    color: #333;
+    font-weight: bold;
+}
+
+/* Estilo para el campo de entrada de nombre */
+input[type="text"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+/* Estilo para el botón de comenzar el juego */
+input[type="submit"] {
+    background-color: #4CAF50;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+/* Estilo para los párrafos de elección del oponente */
+h2 {
+    color: #333;
+}
+
+/* Estilo para las opciones de oponente */
+p {
+    max-width: 600px;
+    margin: 0 auto 20px;
+}

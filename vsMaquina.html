@@ -1,0 +1,40 @@
+<!--Página para el piedra papel tijeras-->
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Piedra Papel Tijeras</title>
+    <link rel="stylesheet" href="styles/style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Piedra, Papel o Tijeras</h1>
+        <div class="score-board">
+            <div id="user-label" class="badge">Usuario</div>
+            <div id="computer-label" class="badge">Computer</div>
+            <span id="user-score">0</span>:<span id="computer-score">0</span>
+        </div>
+        <div class="result">
+            <p>Piedra le gana a Tijeras</p>
+            <p>Papel le gana a Piedra</p>
+            <p>Tijeras le gana a Papel</p>
+        </div>
+        <div class="choices">
+            <div class="choice" id="r">
+                <img src="img/rock.png" alt="">
+            </div>
+            <div class="choice" id="p">
+                <img src="img/paper.png" alt="">
+            </div>
+            <div class="choice" id="s">
+                <img src="img/scissors.png" alt="">
+            </div>
+        </div>
+        <p id="action-message">Haz tu movimiento</p>
+        <div class="reset">
+            <button id="reset">Reiniciar</button>
+        </div>
+    </div>
+    <script src="code/práctica.js"></script>
+</body>
+</html>
