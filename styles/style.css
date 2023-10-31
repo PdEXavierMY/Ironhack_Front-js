@@ -1,75 +1,88 @@
-/* Estilo para el cuerpo de la página */
 body {
-    background-color: #f2f2f2;
-    font-family: Arial, sans-serif;
-    text-align: center;
-    margin: 0;
-    padding: 0;
+    font-family: Arial, Helvetica, sans-serif; /* Fuente del texto */
+    background-color: #f4f4f4; /* Color de fondo */
+    margin: 0; /* Margen exterior */
 }
 
-/* Estilo para el encabezado principal */
-h1 {
-    color: #333;
+/* Estilo para el header */
+header {
+    background-color: #333; /* Color de fondo */
+    color: white; /* Color del texto */
+    padding: 10px; /* Espaciado interno */
+    text-align: center; /* Centrar el contenido */
 }
 
-/* Estilo para los párrafos de introducción y reglas */
-p {
-    color: #666;
-    max-width: 600px;
-    margin: 0 auto 20px;
+/* Estilo para el título (h1) */
+header h1 {
+    font-size: 50px; /* Aumenta el tamaño de la fuente del título */
 }
 
-/* Estilo para la lista de reglas */
-ol {
-    text-align: left;
-    max-width: 600px;
-    margin: 0 auto 20px;
+/* Estilo para el contenedor de los enlaces del header */
+header nav {
+    display: flex; /* Utiliza flexbox para espaciar los enlaces */
+    justify-content: space-around; /* Espacia los enlaces uniformemente */
+    margin: 20px 0; /* Agrega margen superior e inferior */
 }
 
-/* Estilo para los elementos de la lista de reglas */
-li {
-    color: #333;
+/* Estilo para los enlaces del header */
+header a {
+    font-size: 25px; /* Aumenta el tamaño de la fuente de los enlaces */
 }
 
-/* Estilo para el formulario de introducir nombre */
-form {
-    max-width: 400px;
-    margin: 0 auto;
+/* Estilo para el contenedor del juego */
+.game-container {
+    display: flex; /* Utiliza flexbox para centrar los elementos */
+    justify-content: center; /* Centra los elementos horizontalmente */
+    align-items: center; /* Centra los elementos verticalmente */
+    max-width: 95%; /* Establece un ancho máximo para que no ocupe toda la página */
+    margin: 0 auto; /* Centra el contenedor horizontalmente con márgenes automáticos */
+    min-height: 15cm; /* Establece una altura mínima de 15 cm */
+    border: 2px solid #333; /* Borde con color similar al fondo del header */
+    padding: 20px; /* Espaciado interno */
 }
 
-/* Estilo para las etiquetas de formulario */
-label {
-    display: block;
-    color: #333;
-    font-weight: bold;
+/* Estilo para el contenedor del juego */
+.game {
 }
 
-/* Estilo para el campo de entrada de nombre */
-input[type="text"] {
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 20px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
+/* Estilo para los botones de elementos */
+.botones_elementos {
+    text-align: center; /* Centrar los botones horizontalmente */
+    margin: 20px 0; /* Espaciado superior e inferior */
 }
 
-/* Estilo para el botón de comenzar el juego */
-input[type="submit"] {
-    background-color: #4CAF50;
-    color: #fff;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
+/* Estilo para los botones */
+button {
+    padding: 10px 20px; /* Espaciado interno de los botones */
+    font-size: 16px; /* Tamaño de fuente */
+    background-color: #333; /* Color de fondo de los botones */
+    color: white; /* Color del texto de los botones */
+    border: none; /* Sin borde en los botones */
+    margin: 5px; /* Espaciado entre los botones */
+    cursor: pointer; /* Cambia el cursor al pasar el ratón sobre los botones */
 }
 
-/* Estilo para los párrafos de elección del oponente */
-h2 {
-    color: #333;
+/* Estilo para el contenedor de los botones de juego */
+.botones_juego {
+    margin: 20px 0; /* Espaciado superior e inferior */
+    display: flex; /* Muestra los botones de juego en línea */
+    justify-content: center; /* Centra los botones de juego horizontalmente */
 }
 
-/* Estilo para las opciones de oponente */
-p {
-    max-width: 600px;
-    margin: 0 auto 20px;
+/* Estilo para el contenedor de los botones "Start" y "Stop" */
+.botones_juego .start-stop {
+    display: inline-block; /* Muestra los botones "Start" y "Stop" en línea */
+    vertical-align: top; /* Alinea los botones "Start" y "Stop" en la parte superior */
+}
+
+/* Estilo para el botón de "Reset" */
+.botones_juego #reset {
+    display: inline-block; /* Muestra el botón de "Reset" en línea */
+    vertical-align: top; /* Alinea el botón de "Reset" en la parte superior */
+    margin-left: 10px; /* Agrega un margen izquierdo para separar los botones */
+}
+
+/* Cambia el estilo de los botones de juego cuando se les pasa el ratón por encima */
+button:hover {
+    background-color: #555; /* Cambia el color de fondo al pasar el ratón */
 }

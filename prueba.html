@@ -1,0 +1,143 @@
+<body>
+    <header class="mb-3">
+        <nav class="navbar navbar-expand-sm navbar-dark fixed-top bg-primary">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="#">Rock Paper Scissor Simulator</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav me-auto "></ul>
+                    <ul class="navbar-nav flex-row flex-wrap ms-md-auto">
+                        <li class="nav-item dropdown color-theme" id="light-dark-mode">
+                            <button class="btn btn-link nav-link dropdown-toggle" type="button" data-bs-toggle="dropdown" data-bs-display="static">
+                                <i class="fa-regular bi-circle-half"></i>
+                                <span class="ms-2 d-sm-none" data-i18n="color-theme">Color Theme</span>
+                            </button>
+                            <ul class="dropdown-menu dropdown-menu-end p-1">
+                                <li>
+                                    <button type="button" class="dropdown-item d-flex align-items-center rounded" data-value="light">
+                                        <i class="bi bi-sun-fill"></i>
+                                        <span class="ms-3 me-auto" data-i18n="light">Light</span>
+                                        <i class="bi bi-check2 d-none"></i>
+                                    </button>
+                                </li>
+                                <li>
+                                    <button type="button" class="dropdown-item d-flex align-items-center rounded" data-value="dark">
+                                        <i class="bi bi-moon-stars-fill"></i>
+                                        <span class="ms-3 me-auto" data-i18n="dark">Dark</span>
+                                        <i class="bi bi-check2 d-none"></i>
+                                    </button>
+                                </li>
+                                <li>
+                                    <button type="button" class="dropdown-item d-flex align-items-center rounded" data-value="auto">
+                                        <i class="bi bi-circle-half"></i>
+                                        <span class="ms-3 me-auto" data-i18n="auto">Auto</span>
+                                        <i class="bi bi-check2 d-none"></i>
+                                    </button>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <div class="toolbar">
+            <div class="container-fluid">
+                <div class="btn-group d-flex d-sm-inline-flex">
+                    <a href="#" class="btn btn-primary btn-sm" id="btn-play-stop">
+                        <i class="bi bi-play-fill"></i><span class="mx-2">Play</span>
+                    </a>
+                </div>
+                <div class="btn-group d-flex d-sm-inline-flex mt-3 mt-sm-0">
+                    <button type="button" class="btn btn-sm btn-outline-primary dropdown-toggle" data-bs-toggle="dropdown">
+                        <i class="bi bi-plus"></i><span class="mx-2">Add Manually</span>
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item add-hand" data-hand="0" href="#">Rock</a></li>
+                        <li><a class="dropdown-item add-hand" data-hand="1" href="#">Paper</a></li>
+                        <li><a class="dropdown-item add-hand" data-hand="2" href="#">Scissor</a></li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+                        <li><a class="dropdown-item add-hand" data-hand="-1" href="#">None</a></li>
+                    </ul>
+                </div>
+            </div>
+    </header>
+    <main>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12 col-sm-7 col-md-8 col-lg-9 main-panel">
+                    <canvas id="canvas" width="800px" height="600px" class="border rounded">
+                        Your browser does not support the canvas element.
+                    </canvas>
+                </div>
+                <div class="col-12 col-sm-5 col-md-4 col-lg-3 side-panel">
+                    <div class="card">
+                        <div class="card-header">
+                            <ul class="nav nav-tabs card-header-tabs">
+                                <li class="nav-item">
+                                    <button class="nav-link active" data-toggle="tab" data-bs-toggle="tab" data-bs-target="#info">Settings</button>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="card-body overflow-auto sidepanel pt-0">
+                            <div class="tab-content">
+                                <div class="tab-pane fade show active" id="info">
+
+
+                                    <div class="row mb-2">
+                                        <label for="particles" class="col-form-label">Speed</label>
+                                        <div class="btn-group d-flex">
+                                            <input type="radio" class="btn-check " name="speed" id="speed-slow" autocomplete="off" value="1">
+                                            <label class="btn btn-sm btn-outline-primary px-0" for="speed-slow">0.5x</label>
+                                            <input type="radio" class="btn-check" name="speed" id="speed-normal" autocomplete="off" checked value="3">
+                                            <label class="btn btn-sm btn-outline-primary" for="speed-normal">1x</label>
+                                            <input type="radio" class="btn-check" name="speed" id="speed-fast" autocomplete="off" value="9">
+                                            <label class="btn btn-sm btn-outline-primary" for="speed-fast">2x</label>
+                                            <input type="radio" class="btn-check" name="speed" id="speed-fastest" autocomplete="off" value="27">
+                                            <label class="btn btn-sm btn-outline-primary" for="speed-fastest">3x</label>
+                                            <input type="radio" class="btn-check" name="speed" id="speed-4x" autocomplete="off" value="81">
+                                            <label class="btn btn-sm btn-outline-primary" for="speed-4x">4x</label>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="row mb-2">
+                                        <label for="particles" class="col-form-label col-sm-6 ">Particles</label>
+                                        <div class="col-sm-6">
+                                            <input type="number" class="form-control form-control-sm" pattern="\d*" id="particles" step="2" min="2" max="400" value="50">
+                                        </div>
+                                    </div>
+                                    <div class="row mb-2">
+                                        <label for="radius" class="col-form-label col-sm-6 ">Radius</label>
+                                        <div class="col-sm-6">
+                                            <input type="number" class="form-control form-control-sm" pattern="\d*" id="radius" step="1" min="1" max="20" value="10">
+                                        </div>
+                                    </div>
+                                    <div class="row mb-2">
+                                        <label for="sameSpeed" class="col-form-label col-6 ">Same Speed</label>
+                                        <div class="col-6 d-flex align-items-center justify-content-end">
+                                            <div class="form-check form-switch d-flex align-items-center ">
+                                                <input class="form-check-input" type="checkbox" role="switch" id="sameSpeed" checked="checked">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row mb-2">
+                                        <label for="showGrid" class="col-form-label col-6 ">Grid</label>
+                                        <div class="col-6 d-flex align-items-center justify-content-end">
+                                            <div class="form-check form-switch d-flex align-items-center ">
+                                                <input class="form-check-input" type="checkbox" role="switch" id="showGrid">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <canvas id="chart" width="100%" height="70px" class="border rounded"></canvas>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>

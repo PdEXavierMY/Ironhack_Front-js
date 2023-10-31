@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1"> <!-- Para que se adapte a la pantalla del dispositivo -->
+    <title>(Juego)</title>
+    <link rel="stylesheet" href="styles/style.css">
+</head>
+<body>
+    <header>
+        <h1>(Juego)</h1>
+        <nav>
+            <a href="index.html">Inicio</a>
+            <a href="simulador.html">Simulador</a>
+        </nav>
+    </header>
+
+    <div class="botones_juego">
+        <div class="start/stop">
+            <button id="start">Start</button>
+            <button id="stop">Stop</button>
+        </div>
+        <button id="reset">Reset</button>
+    </div>
+
+    <div class="game-container">
+        <div class="game">
+            <canvas id="canvas" width="800px" height="600px" class="border rounded">
+                Your browser does not support the canvas element.
+            </canvas>
+        </div>
+    </div>
+
+    <div class="botones_elementos">
+        <button id="asteroide">Asteroide</button>
+        <button id="cohete">Cohete</button>
+        <button id="planeta">Planeta</button>
+        <button id="ovni">Ovni</button>
+        <button id="cometa">Cometa</button>
+    </div>
+    <script src="code/initial_images.js"></script>
+</body>
+</html>
