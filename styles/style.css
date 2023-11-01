@@ -34,15 +34,20 @@ header a {
     display: flex; /* Utiliza flexbox para centrar los elementos */
     justify-content: center; /* Centra los elementos horizontalmente */
     align-items: center; /* Centra los elementos verticalmente */
-    max-width: 95%; /* Establece un ancho máximo para que no ocupe toda la página */
+    max-width: 70%; /* Establece un ancho máximo para que no ocupe toda la página */
     margin: 0 auto; /* Centra el contenedor horizontalmente con márgenes automáticos */
-    min-height: 15cm; /* Establece una altura mínima de 15 cm */
+    min-height: 10cm; /* Establece una altura mínima de 10 cm */
     border: 2px solid #333; /* Borde con color similar al fondo del header */
     padding: 20px; /* Espaciado interno */
 }
 
 /* Estilo para el contenedor del juego */
 .game {
+    width: 100%; /* Establece un ancho del 100% */
+}
+
+canvas {
+    width: 100%; /* Establece un ancho del 100% */
 }
 
 /* Estilo para los botones de elementos */
@@ -80,6 +85,12 @@ button {
     display: inline-block; /* Muestra el botón de "Reset" en línea */
     vertical-align: top; /* Alinea el botón de "Reset" en la parte superior */
     margin-left: 10px; /* Agrega un margen izquierdo para separar los botones */
+}
+
+.barra_velocidad {
+    display: flex; /* Muestra la barra de velocidad en línea */
+    justify-content: center; /* Centra la barra de velocidad horizontalmente */
+    margin: 20px 0; /* Espaciado superior e inferior */
 }
 
 /* Cambia el estilo de los botones de juego cuando se les pasa el ratón por encima */
