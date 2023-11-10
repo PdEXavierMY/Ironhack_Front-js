@@ -26,16 +26,18 @@ catalizadores.atomo.src = "images/atomo.png";
 catalizadores.plasma.src = "images/plasma.png";
 catalizadores.polvo.src = "images/polvo.png";
 
+const BORDES = 15;
+
 // Función para obtener el ancho de la ventana del navegador
 function getWindowWidth() {
     return window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
 }
 
 function adjustCoordinates(x, y, canvas) {
-    const minX = 15; // Mínimo valor permitido para X
-    const maxX = canvas.width - 15; // Máximo valor permitido para X
-    const minY = 15; // Mínimo valor permitido para Y
-    const maxY = canvas.height - 15; // Máximo valor permitido para Y
+    const minX = BORDES; // Mínimo valor permitido para X
+    const maxX = canvas.width - BORDES; // Máximo valor permitido para X
+    const minY = BORDES; // Mínimo valor permitido para Y
+    const maxY = canvas.height - BORDES; // Máximo valor permitido para Y
 
     // Ajusta X y Y si están fuera de los límites
     if (x < minX) {
@@ -85,9 +87,9 @@ function generateRandomImage() {
     const imagesArray = Object.values(imagenes);
     const randomImage = imagesArray[Math.floor(Math.random() * imagesArray.length)];
 
-    // Genera velocidades aleatorias
-    const randomDx = (Math.random() - 0.5) * 2; // -1 a 1
-    const randomDy = (Math.random() - 0.5) * 2; // -1 a 1
+    // Genera velocidades aleatorias de -1 o 1
+    const randomDx = Math.random() < 0.5 ? -1 : 1;
+    const randomDy = Math.random() < 0.5 ? -1 : 1;
 
     return new CustomImage(randomX, randomY, randomDx, randomDy, randomImage);
 }
@@ -105,10 +107,10 @@ function generateRandomImages(count) {
 // Función para verificar y ajustar la colisión
 function checkCollision(image, speed) {
     const { x, y, dx, dy } = image;
-    const minX = 15;
-    const maxX = canvas.width - 15;
-    const minY = 15;
-    const maxY = canvas.height - 15;
+    const minX = BORDES;
+    const maxX = canvas.width - BORDES;
+    const minY = BORDES;
+    const maxY = canvas.height - BORDES;
 
     // Verifica colisión con los bordes izquierdo y derecho
     if (x + dx * speed < minX || x + dx * speed > maxX) {
@@ -147,7 +149,13 @@ function moveImages(images, speed, scale) {
         image.x += image.dx * speed;
         image.y += image.dy * speed;
 
-        drawImage(image, scale);
+        // Ajusta la escala según el tipo de imagen
+        if (image.image === imagenes.planeta) {
+            drawImage(image, 0.1);
+        }
+        else {
+            drawImage(image, scale);
+        }
     });
 }
 
@@ -158,14 +166,14 @@ document.addEventListener("DOMContentLoaded", function() {
     // Define las imágenes que deseas mover
     let images = generateRandomImages(50);
     // Define la velocidad de movimiento
-    let speed = 10;
+    let speed = 5;
     // Define la escala de las imágenes
     let scale = 0.05;
 
     // Establece un intervalo para llamar a la función de movimiento
     setInterval(function () {
         moveImages(images, speed, scale);
-    }, 100); // Puedes ajustar la velocidad de movimiento cambiando el valor de 100 (en milisegundos)
+    }, 30); // Puedes ajustar la velocidad de movimiento cambiando el valor de 100 (en milisegundos)
 });
 
 
