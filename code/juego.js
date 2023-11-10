@@ -32,10 +32,10 @@ function getWindowWidth() {
 }
 
 function adjustCoordinates(x, y, canvas) {
-    const minX = 30; // Mínimo valor permitido para X
-    const maxX = canvas.width - 30; // Máximo valor permitido para X
-    const minY = 30; // Mínimo valor permitido para Y
-    const maxY = canvas.height - 30; // Máximo valor permitido para Y
+    const minX = 15; // Mínimo valor permitido para X
+    const maxX = canvas.width - 15; // Máximo valor permitido para X
+    const minY = 15; // Mínimo valor permitido para Y
+    const maxY = canvas.height - 15; // Máximo valor permitido para Y
 
     // Ajusta X y Y si están fuera de los límites
     if (x < minX) {
@@ -53,84 +53,119 @@ function adjustCoordinates(x, y, canvas) {
     return { x, y };
 }
 
-// Función para dibujar una imagen en una posición aleatoria con un tamaño específico
-function drawRandomImage(image, x, y, scale) {
-    // Redefinir el tamaño de la imagen según el factor de escala
-    const newWidth = image.width * scale;
-    const newHeight = image.height * scale;
-
-    // Ajusta las coordenadas dentro de los límites
-    const adjustedCoordinates = adjustCoordinates(x, y, canvas);
-    x = adjustedCoordinates.x;
-    y = adjustedCoordinates.y;
-
-    // Dibujar la imagen en el canvas con el nuevo tamaño
-    ctx.drawImage(image, x, y, newWidth, newHeight);
+class CustomImage {
+    constructor(x, y, dx, dy, image) {
+        this.x = x;
+        this.y = y;
+        this.dx = dx;
+        this.dy = dy;
+        this.image = image;
+        this.collision = false;
+    }
 }
 
-// Función para dibujar todas las imágenes de la constante 'imagenes' en posiciones aleatorias
-function generateAllImages() {
-    const generatedImages = [];
+// Función para dibujar una imagen en una posición específica con escala
+function drawImage(customImage, scale) {
+    const newWidth = customImage.image.width * scale;
+    const newHeight = customImage.image.height * scale;
+    ctx.drawImage(customImage.image, customImage.x, customImage.y, newWidth, newHeight);
+}
 
-    for (let i = 0; i < 50; i++) {
-        let randomX = Math.random() * canvas.width;
-        let randomY = Math.random() * canvas.height;
-        const imagesArray = Object.values(imagenes);
-        const randomImage = imagesArray[Math.floor(Math.random() * imagesArray.length)];
+// Función para generar una imagen aleatoria
+function generateRandomImage() {
+    // Genera coordenadas iniciales aleatorias
+    let randomX = Math.random() * canvas.width;
+    let randomY = Math.random() * canvas.height;
 
-        // Ajusta las coordenadas dentro de los límites
-        const adjustedCoordinates = adjustCoordinates(randomX, randomY, canvas);
-        randomX = adjustedCoordinates.x;
-        randomY = adjustedCoordinates.y;
+    // Ajusta las coordenadas dentro de los límites del canvas
+    const adjustedCoordinates = adjustCoordinates(randomX, randomY, canvas);
+    randomX = adjustedCoordinates.x;
+    randomY = adjustedCoordinates.y;
 
-        generatedImages.push({ x: randomX, y: randomY, image: randomImage });
+    const imagesArray = Object.values(imagenes);
+    const randomImage = imagesArray[Math.floor(Math.random() * imagesArray.length)];
+
+    // Genera velocidades aleatorias
+    const randomDx = (Math.random() - 0.5) * 2; // -1 a 1
+    const randomDy = (Math.random() - 0.5) * 2; // -1 a 1
+
+    return new CustomImage(randomX, randomY, randomDx, randomDy, randomImage);
+}
+
+
+// Función para generar un conjunto de imágenes aleatorias
+function generateRandomImages(count) {
+    const images = [];
+    for (let i = 0; i < count; i++) {
+        images.push(generateRandomImage());
+    }
+    return images;
+}
+
+// Función para verificar y ajustar la colisión
+function checkCollision(image, speed) {
+    const { x, y, dx, dy } = image;
+    const minX = 15;
+    const maxX = canvas.width - 15;
+    const minY = 15;
+    const maxY = canvas.height - 15;
+
+    // Verifica colisión con los bordes izquierdo y derecho
+    if (x + dx * speed < minX || x + dx * speed > maxX) {
+        image.dx = -dx;
     }
 
-    return generatedImages;
+    // Verifica colisión con los bordes superior e inferior
+    if (y + dy * speed < minY || y + dy * speed > maxY) {
+        image.dy = -dy;
+    }
+
+    // Verifica colisión en las esquinas (cambio en ambos dx y dy)
+    if ((x + dx * speed < minX && y + dy * speed < minY) || (x + dx * speed > maxX && y + dy * speed > maxY)) {
+        image.dx = -dx;
+        image.dy = -dy;
+    }
+
+    if ((x + dx * speed > maxX && y + dy * speed < minY) || (x + dx * speed < minX && y + dy * speed > maxY)) {
+        image.dx = -dx;
+        image.dy = -dy;
+    }
 }
 
+
+// Función para mover las imágenes con detección de colisiones
+function moveImages(images, speed, scale) {
+    // Borra el canvas
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+    // Mueve las imágenes en direcciones aleatorias
+    images.forEach(function (image) {
+        // Verifica y ajusta la colisión antes de calcular la nueva posición
+        checkCollision(image, speed);
+
+        // Calcula la nueva posición de la imagen
+        image.x += image.dx * speed;
+        image.y += image.dy * speed;
+
+        drawImage(image, scale);
+    });
+}
+
+
+
+// Llama a la función moveImages al cargar la página para mostrar las imágenes iniciales
 document.addEventListener("DOMContentLoaded", function() {
     // Define las imágenes que deseas mover
-    const images = generateAllImages();
-    console.log(images);
-
+    let images = generateRandomImages(50);
     // Define la velocidad de movimiento
-    const speed =10;
-
-    function moveImages() {
-        // Borra el canvas
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-        // Mueve las imágenes en direcciones aleatorias
-        images.forEach(function(image) {
-            // Genera un valor aleatorio entre -1 y 1 para el desplazamiento horizontal y vertical
-            const dx = (Math.random() - 0.5) * 2; // -1 a 1
-            const dy = (Math.random() - 0.5) * 2; // -1 a 1
-
-            // Calcula la nueva posición de la imagen
-            image.x += dx * speed;
-            image.y += dy * speed;
-
-            let scale = 0.05; // Factor de escala predeterminado
-
-            if (image.image === imagenes.planeta) {
-                // Si el ancho de la ventana es menor a 500px, usa un factor de escala del 15%
-                if (getWindowWidth() < 500) {
-                    scale = 0.15;
-                } else {
-                    scale = 0.1;
-                }
-            }
-
-            drawRandomImage(image.image, image.x, image.y, scale);
-        });
-    }
+    let speed = 10;
+    // Define la escala de las imágenes
+    let scale = 0.05;
 
     // Establece un intervalo para llamar a la función de movimiento
-    setInterval(moveImages, 100); // Puedes ajustar la velocidad de movimiento cambiando el valor de 100 (en milisegundos)
-
-    // Llama a moveImages al cargar la página para mostrar las imágenes iniciales
-    moveImages();
+    setInterval(function () {
+        moveImages(images, speed, scale);
+    }, 100); // Puedes ajustar la velocidad de movimiento cambiando el valor de 100 (en milisegundos)
 });
 
 
@@ -138,5 +173,5 @@ document.addEventListener("DOMContentLoaded", function() {
 // Evento de cambio de tamaño de ventana para redibujar las imágenes cuando cambie el ancho de la ventana
 window.addEventListener("resize", function() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
-    drawAllImages();
+    generateRandomImages(50);
 });*/
