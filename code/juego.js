@@ -82,7 +82,6 @@ class CustomImage {
         this.dx = dx;
         this.dy = dy;
         this.image = image;
-        this.collision = false;
     }
 }
 
@@ -107,7 +106,7 @@ function generateRandomImage() {
     const imagesArray = Object.values(imagenes);
     const randomImage = imagesArray[Math.floor(Math.random() * imagesArray.length)];
 
-    // Genera velocidades aleatorias de -1 o 1
+    // Genera velocidades aleatorias (-1 o 1)
     const randomDx = Math.random() < 0.5 ? -1 : 1;
     const randomDy = Math.random() < 0.5 ? -1 : 1;
 
@@ -197,14 +196,53 @@ function adjustCollisionPosition(image, collisionPair, scale) {
 function checkImageCollisionAndAdjust(image, otherImage, scale) {
     // Verifica la colisión
     if (checkImageCollision(image, otherImage)) {
-        // Cambia la dirección de ambas imágenes
-        image.dx = -image.dx;
-        image.dy = -image.dy;
-        otherImage.dx = -otherImage.dx;
-        otherImage.dy = -otherImage.dy;
+        // Lógica del juego
+        space_collision(image, otherImage);
 
         // Ajusta la posición después de cambiar la dirección
         adjustCollisionPosition(image, [image, otherImage], scale);
+    }
+}
+
+// Función para la logica del juego
+function space_collision(image, otherImage) {
+    image.dx = -image.dx;
+    image.dy = -image.dy;
+    otherImage.dx = -otherImage.dx;
+    otherImage.dy = -otherImage.dy;
+
+    // Lógica de colisión
+    changeImage(image, otherImage);
+}
+
+// En la función changeImage, agrega console.log() para verificar si se está llamando y qué condiciones se cumplen:
+function changeImage(image, otherImage) {
+    
+    // Obtén las rutas de las imágenes
+    const imagePath = image.image.src;
+    const otherImagePath = otherImage.image.src;
+
+    // Comprueba las reglas y realiza el intercambio
+    if (imagePath.includes('asteroide') && otherImagePath.includes('cohete')) {
+        otherImage.image = image.image;
+    } else if (imagePath.includes('asteroide') && otherImagePath.includes('planeta')) {
+        otherImage.image = image.image;
+    } else if (imagePath.includes('cohete') && otherImagePath.includes('planeta')) {
+        otherImage.image = image.image;
+    } else if (imagePath.includes('cohete') && otherImagePath.includes('ovni')) {
+        otherImage.image = image.image;
+    } else if (imagePath.includes('planeta') && otherImagePath.includes('ovni')) {
+        otherImage.image = image.image;
+    } else if (imagePath.includes('planeta') && otherImagePath.includes('cometa')) {
+        otherImage.image = image.image;
+    } else if (imagePath.includes('ovni') && otherImagePath.includes('cometa')) {
+        otherImage.image = image.image;
+    } else if (imagePath.includes('ovni') && otherImagePath.includes('asteroide')) {
+        otherImage.image = image.image;
+    } else if (imagePath.includes('cometa') && otherImagePath.includes('asteroide')) {
+        otherImage.image = image.image;
+    } else if (imagePath.includes('cometa') && otherImagePath.includes('cohete')) {
+        otherImage.image = image.image;
     }
 }
 
@@ -223,7 +261,7 @@ function moveImage(image, speed, scale) {
 
 // Función controladora que maneja el movimiento de todas las imágenes
 function controlador(images, speed, scale) {
-    let collisioned_images = [];  // Agrega esta línea
+    let collisioned_images = [];
 
     // Borra el canvas
     ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -266,8 +304,8 @@ function controlador(images, speed, scale) {
 
 // Llama a la función moveImages al cargar la página para mostrar las imágenes iniciales
 document.addEventListener("DOMContentLoaded", function () {
-    // Define las imágenes que deseas mover
-    let images = generateRandomImages(50);
+    // Define las imágenes que mover
+    let images = generateRandomImages(60);
     // Define la velocidad de movimiento
     let speed = 2;
     // Define la escala de las imágenes
@@ -276,7 +314,57 @@ document.addEventListener("DOMContentLoaded", function () {
     setInterval(function () {
         controlador(images, speed, scale);
     }, 30); // Se puede ajustar el tiempo de actualización de las imágenes
+
+    document.getElementById('reset').addEventListener('click', function() {
+        images = resetCanvas(images);
+    });
+
+    // Añade event listeners para cada botón
+    document.getElementById('asteroide').addEventListener('click', function() {
+        new_image = generateRandomImage();
+        new_image.image = imagenes.asteroide;
+        images.push(new_image);
+    });
+
+    document.getElementById('cohete').addEventListener('click', function() {
+        new_image = generateRandomImage();
+        new_image.image = imagenes.cohete;
+        images.push(new_image);
+    });
+
+    document.getElementById('planeta').addEventListener('click', function() {
+        new_image = generateRandomImage();
+        new_image.image = imagenes.planeta;
+        images.push(new_image);
+    });
+
+    document.getElementById('ovni').addEventListener('click', function() {
+        new_image = generateRandomImage();
+        new_image.image = imagenes.ovni;
+        images.push(new_image);
+    });
+
+    document.getElementById('cometa').addEventListener('click', function() {
+        new_image = generateRandomImage();
+        new_image.image = imagenes.cometa;
+        images.push(new_image);
+    });
 });
+
+function resetCanvas(images) {
+    // Obtén el canvas y su contexto
+    const canvas = document.getElementById('canvas');
+    const ctx = canvas.getContext('2d');
+
+    // Genera nuevas imágenes aleatorias
+    const newImages = [];
+
+    // Limpia el canvas
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+    // Devuelve el nuevo array de imágenes generado
+    return newImages;
+}
 
 
 // Evento de cambio de tamaño de ventana para redibujar las imágenes cuando cambie el ancho de la ventana
