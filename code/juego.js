@@ -359,35 +359,41 @@ document.addEventListener("DOMContentLoaded", function () {
         new_image = generateRandomImage();
         new_image.image = imagenes.asteroide;
         images.push(new_image);
+        drawImage(new_image, scale);
     });
 
     document.getElementById('cohete').addEventListener('click', function() {
         new_image = generateRandomImage();
         new_image.image = imagenes.cohete;
         images.push(new_image);
+        drawImage(new_image, scale);
     });
 
     document.getElementById('planeta').addEventListener('click', function() {
         new_image = generateRandomImage();
         new_image.image = imagenes.planeta;
         images.push(new_image);
+        drawImage(new_image, scale);
     });
 
     document.getElementById('ovni').addEventListener('click', function() {
         new_image = generateRandomImage();
         new_image.image = imagenes.ovni;
         images.push(new_image);
+        drawImage(new_image, scale);
     });
 
     document.getElementById('cometa').addEventListener('click', function() {
         new_image = generateRandomImage();
         new_image.image = imagenes.cometa;
         images.push(new_image);
+        drawImage(new_image, scale);
     });
 });
 
+/*
 // Evento de cambio de tamaño de ventana para redibujar las imágenes cuando cambie el ancho de la ventana
 window.addEventListener("resize", function() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     generateRandomImages(20);
-});
+});*/
