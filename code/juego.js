@@ -302,6 +302,21 @@ function controlador(images, speed, scale) {
     }
 }
 
+function resetCanvas(images) {
+    // Obtén el canvas y su contexto
+    const canvas = document.getElementById('canvas');
+    const ctx = canvas.getContext('2d');
+
+    // Genera nuevas imágenes aleatorias
+    const newImages = [];
+
+    // Limpia el canvas
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+    // Devuelve el nuevo array de imágenes generado
+    return newImages;
+}
+
 // Llama a la función moveImages al cargar la página para mostrar las imágenes iniciales
 document.addEventListener("DOMContentLoaded", function () {
     // Define las imágenes que mover
@@ -310,10 +325,30 @@ document.addEventListener("DOMContentLoaded", function () {
     let speed = 2;
     // Define la escala de las imágenes
     let scale = getScale();
-    
-    setInterval(function () {
-        controlador(images, speed, scale);
-    }, 30); // Se puede ajustar el tiempo de actualización de las imágenes
+    let intervalId; // Variable para almacenar el ID del intervalo
+
+    // Función para iniciar el intervalo y habilitar/deshabilitar botones
+    function startGame() {
+        document.getElementById('start').disabled = true;
+        document.getElementById('stop').disabled = false;
+        intervalId = setInterval(function () {
+            controlador(images, speed, scale);
+        }, 30);
+    }
+
+    startGame()
+
+    // Función para detener el intervalo y habilitar/deshabilitar botones
+    function stopGame() {
+        document.getElementById('start').disabled = false;
+        document.getElementById('stop').disabled = true;
+        clearInterval(intervalId);
+    }
+
+    // Añade event listeners para cada botón
+    document.getElementById('start').addEventListener('click', startGame);
+
+    document.getElementById('stop').addEventListener('click', stopGame);
 
     document.getElementById('reset').addEventListener('click', function() {
         images = resetCanvas(images);
@@ -350,22 +385,6 @@ document.addEventListener("DOMContentLoaded", function () {
         images.push(new_image);
     });
 });
-
-function resetCanvas(images) {
-    // Obtén el canvas y su contexto
-    const canvas = document.getElementById('canvas');
-    const ctx = canvas.getContext('2d');
-
-    // Genera nuevas imágenes aleatorias
-    const newImages = [];
-
-    // Limpia el canvas
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-    // Devuelve el nuevo array de imágenes generado
-    return newImages;
-}
-
 
 // Evento de cambio de tamaño de ventana para redibujar las imágenes cuando cambie el ancho de la ventana
 window.addEventListener("resize", function() {
