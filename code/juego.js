@@ -33,10 +33,30 @@ function getWindowWidth() {
     return window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
 }
 
+// Función para obtener la escala basada en el ancho de la ventana
+function getScale() {
+    const windowWidth = getWindowWidth();
+
+    // Define los puntos de quiebre para ajustar la escala
+    const breakpoints = {
+        small: 500,
+        medium: 800,
+    };
+
+    // Asigna la escala según el ancho de la ventana
+    if (windowWidth < breakpoints.small) {
+        return 0.2; // Ejemplo de escala para ventanas pequeñas
+    } else if (windowWidth < breakpoints.medium) {
+        return 0.1; // Ejemplo de escala para ventanas medianas
+    } else {
+        return 0.05; // Escala predeterminada para ventanas grandes
+    }
+}
+
 function adjustCoordinates(x, y, canvas) {
-    const minX = BORDES; // Mínimo valor permitido para X
+    const minX = 0; // Mínimo valor permitido para X
     const maxX = canvas.width - BORDES; // Máximo valor permitido para X
-    const minY = BORDES; // Mínimo valor permitido para Y
+    const minY = 0; // Mínimo valor permitido para Y
     const maxY = canvas.height - BORDES; // Máximo valor permitido para Y
 
     // Ajusta X y Y si están fuera de los límites
@@ -105,11 +125,11 @@ function generateRandomImages(count) {
 }
 
 // Función para verificar y ajustar la colisión
-function checkCollision(image, speed) {
+function checkBorderCollision(image, speed) {
     const { x, y, dx, dy } = image;
-    const minX = BORDES;
+    const minX = 0;
     const maxX = canvas.width - BORDES;
-    const minY = BORDES;
+    const minY = 0;
     const maxY = canvas.height - BORDES;
 
     // Verifica colisión con los bordes izquierdo y derecho
@@ -134,52 +154,133 @@ function checkCollision(image, speed) {
     }
 }
 
+// Función para verificar la colisión entre dos imágenes basada en las coordenadas x e y
+function checkImageCollision(image1, image2) {
+    const x1 = image1.x;
+    const y1 = image1.y;
+    const x2 = image2.x;
+    const y2 = image2.y;
 
-// Función para mover las imágenes con detección de colisiones
-function moveImages(images, speed, scale) {
+    // Define el margen de error permitido
+    const margin = 15;
+
+    // Comprueba si las coordenadas x e y son iguales con un margen de error
+    if (
+        Math.abs(x1 - x2) <= margin &&
+        Math.abs(y1 - y2) <= margin
+    ) {
+        return true;
+    }
+
+    return false;
+}
+
+// Función para ajustar la posición después de una colisión entre imágenes
+function adjustCollisionPosition(image, collisionPair, scale) {
+    // Calcula la distancia y la superposición entre las imágenes
+    const dx = collisionPair[0].x - collisionPair[1].x;
+    const dy = collisionPair[0].y - collisionPair[1].y;
+    const distance = Math.sqrt(dx * dx + dy * dy);
+    const overlap = (collisionPair[0].image.width * scale + collisionPair[1].image.width * scale) / 2 - distance;
+
+    // Ajusta las posiciones para separar las imágenes según la superposición
+    const adjustX = (dx / distance) * overlap / 2;
+    const adjustY = (dy / distance) * overlap / 2;
+
+    collisionPair[0].x += adjustX;
+    collisionPair[0].y += adjustY;
+    collisionPair[1].x -= adjustX;
+    collisionPair[1].y -= adjustY;
+}
+
+// Función para verificar y ajustar la colisión entre imágenes
+function checkImageCollisionAndAdjust(image, otherImage, scale) {
+    // Verifica la colisión
+    if (checkImageCollision(image, otherImage)) {
+        // Cambia la dirección de ambas imágenes
+        image.dx = -image.dx;
+        image.dy = -image.dy;
+        otherImage.dx = -otherImage.dx;
+        otherImage.dy = -otherImage.dy;
+
+        // Ajusta la posición después de cambiar la dirección
+        adjustCollisionPosition(image, [image, otherImage], scale);
+    }
+}
+
+// Función para mover una imagen con detección de colisiones
+function moveImage(image, speed, scale) {
+    // Verifica y ajusta la colisión antes de calcular la nueva posición
+    checkBorderCollision(image, speed);
+
+    // Calcula la nueva posición de la imagen
+    image.x += image.dx * speed;
+    image.y += image.dy * speed;
+
+    // Dibuja la imagen en la nueva posición
+    drawImage(image, scale);
+}
+
+// Función controladora que maneja el movimiento de todas las imágenes
+function controlador(images, speed, scale) {
+    let collisioned_images = [];  // Agrega esta línea
+
     // Borra el canvas
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-    // Mueve las imágenes en direcciones aleatorias
-    images.forEach(function (image) {
-        // Verifica y ajusta la colisión antes de calcular la nueva posición
-        checkCollision(image, speed);
+    // Bucle externo para recorrer todas las imágenes
+    for (let i = 0; i < images.length; i++) {
+        const currentImage = images[i];
+        const check_collisioned_images = images.slice();
+        let minDistance = Number.MAX_VALUE;
+        let closestPair = [];
 
-        // Calcula la nueva posición de la imagen
-        image.x += image.dx * speed;
-        image.y += image.dy * speed;
+        // Verifica y ajusta la colisión con las paredes
+        checkBorderCollision(currentImage, speed);
 
-        // Ajusta la escala según el tipo de imagen
-        if (image.image === imagenes.planeta) {
-            drawImage(image, 0.1);
+        // Bucle interno para verificar la colisión con otras imágenes no verificadas
+        for (let j = i + 1; j < check_collisioned_images.length; j++) {
+            // Verifica y ajusta la colisión entre imágenes
+            checkImageCollisionAndAdjust(currentImage, check_collisioned_images[j], scale);
+
+            // Calcula la distancia entre las imágenes
+            const distance = Math.sqrt(
+                (currentImage.x - check_collisioned_images[j].x) ** 2 +
+                (currentImage.y - check_collisioned_images[j].y) ** 2
+            );
+
+            // Actualiza la pareja más cercana
+            if (distance < minDistance) {
+                minDistance = distance;
+                closestPair = [currentImage, check_collisioned_images[j]];
+            }
         }
-        else {
-            drawImage(image, scale);
-        }
-    });
+
+        // Añade la pareja más cercana a la lista
+        collisioned_images.push(...closestPair);
+
+        // Mueve la imagen actual
+        moveImage(currentImage, speed, scale);
+    }
 }
 
-
-
 // Llama a la función moveImages al cargar la página para mostrar las imágenes iniciales
-document.addEventListener("DOMContentLoaded", function() {
+document.addEventListener("DOMContentLoaded", function () {
     // Define las imágenes que deseas mover
     let images = generateRandomImages(50);
     // Define la velocidad de movimiento
-    let speed = 5;
+    let speed = 2;
     // Define la escala de las imágenes
-    let scale = 0.05;
-
-    // Establece un intervalo para llamar a la función de movimiento
+    let scale = getScale();
+    
     setInterval(function () {
-        moveImages(images, speed, scale);
-    }, 30); // Puedes ajustar la velocidad de movimiento cambiando el valor de 100 (en milisegundos)
+        controlador(images, speed, scale);
+    }, 30); // Se puede ajustar el tiempo de actualización de las imágenes
 });
 
 
-/*
 // Evento de cambio de tamaño de ventana para redibujar las imágenes cuando cambie el ancho de la ventana
 window.addEventListener("resize", function() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
-    generateRandomImages(50);
-});*/
+    generateRandomImages(20);
+});
