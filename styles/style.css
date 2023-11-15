@@ -94,7 +94,18 @@ button {
     margin: 20px 0; /* Espaciado superior e inferior */
 }
 
+.barra_velocidad label {
+    margin-right: 10px; /* Agrega un margen derecho para separar la etiqueta del rango */
+    padding-top: 15px; /* Centra la etiqueta verticalmente */
+}
+
 /* Cambia el estilo de los botones de juego cuando se les pasa el ratón por encima */
 button:hover {
     background-color: #555; /* Cambia el color de fondo al pasar el ratón */
+}
+
+/* Agrega estas reglas al estilo de tu canvas en tu archivo CSS */
+canvas {
+    background-image: url('universo.jpg'); /* Ruta de la imagen de fondo */
+    background-size: cover; /* Ajusta el tamaño de la imagen para cubrir todo el canvas */
 }

@@ -3,14 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1"> <!-- Para que se adapte a la pantalla del dispositivo -->
-    <title>(Juego)</title>
+    <title>Space Collision</title>
     <link rel="stylesheet" href="styles/style.css">
 </head>
 <body>
     <header>
-        <h1>(Juego)</h1>
+        <h1>Space Collision</h1>
         <nav>
             <a href="index.html">Inicio</a>
+            <a href="instrucciones.html">Instrucciones</a>
             <a href="simulador.html">Simulador</a>
         </nav>
     </header>
@@ -25,6 +26,7 @@
     <div class="barra_velocidad">
         <label for="slider" id="labelVelocidad">Velocidad:</label>
         <input type="range" id="slider" name="slider" min="0" max="4" step="1" value="1">
+        <p id="numero_velocidad"></p>
     </div>
 
     <div class="game-container">
@@ -41,6 +43,13 @@
         <button id="planeta">Planeta</button>
         <button id="ovni">Ovni</button>
         <button id="cometa">Cometa</button>
+    </div>
+
+    <!-- Agrega un input y un botón -->
+    <div>
+        <label for="cantidadImagenes">Generar aleatoriamente:</label>
+        <input type="number" id="cantidadImagenes" name="cantidadImagenes" min="1" max="50">
+        <button id="generar">Generar</button>
     </div>
 
     <script src="code/juego.js"></script>
