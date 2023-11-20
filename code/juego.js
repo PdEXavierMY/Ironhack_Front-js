@@ -481,11 +481,14 @@ document.addEventListener("DOMContentLoaded", function () {
             controlador(images, speed, scale, ctx, canvas, imgFondo);
             // Verifica si todas las imágenes son iguales
             if (areAllImagesEqual(images)) {
-                // Obtiene la imagen ganadora
-                const winner = images[0].image.src;
-                alert("¡El ganador es: " + getWinnerName(winner));
-                // Detiene el intervalo
-                clearInterval(intervalId);
+                //si hay mas de 1 imagen
+                if (images.length > 1) {
+                    // Obtiene la imagen ganadora
+                    const winner = images[0].image.src;
+                    alert("¡El ganador es: " + getWinnerName(winner)+"!");
+                    // Detiene el intervalo
+                    clearInterval(intervalId);
+                }
             }
         }, 30);
     }

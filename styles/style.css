@@ -1,71 +1,67 @@
 body {
-    font-family: Arial, Helvetica, sans-serif; /* Fuente del texto */
-    background-color: #f4f4f4; /* Color de fondo */
-    margin: 0; /* Margen exterior */
+    font-family: 'Arial', sans-serif;
+    background-color: #001f3f; /* Color de fondo oscuro */
+    color: #ffffff; /* Color del texto */
+    margin: 0;
 }
 
-/* Estilo para el header */
 header {
-    background-color: #333; /* Color de fondo */
-    color: white; /* Color del texto */
-    padding: 10px; /* Espaciado interno */
-    text-align: center; /* Centrar el contenido */
+    background-color: #0074cc; /* Color de fondo del encabezado */
+    color: #ffffff;
+    padding: 10px;
+    text-align: center;
 }
 
-/* Estilo para el título (h1) */
-header h1 {
-    font-size: 50px; /* Aumenta el tamaño de la fuente del título */
+nav a {
+    color: #ffffff;
+    text-decoration: none;
+    margin: 0 15px;
+    font-size: 18px;
 }
 
-/* Estilo para el contenedor de los enlaces del header */
-header nav {
-    display: flex; /* Utiliza flexbox para espaciar los enlaces */
-    justify-content: space-around; /* Espacia los enlaces uniformemente */
-    margin: 20px 0; /* Agrega margen superior e inferior */
+.introduction {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #ffffff; /* Color de fondo del área de introducción */
+    color: #333333; /* Color del texto dentro del área de introducción */
+    border-radius: 10px;
 }
 
-/* Estilo para los enlaces del header */
-header a {
-    font-size: 25px; /* Aumenta el tamaño de la fuente de los enlaces */
+.introduction h2 {
+    color: #0074cc; /* Color del título de la introducción */
+}
+
+footer {
+    background-color: #0074cc; /* Color de fondo del pie de página */
+    color: #ffffff;
+    text-align: center;
+    padding: 10px;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
 }
 
 /* Estilo para el contenedor del juego */
 .game-container {
-    display: flex; /* Utiliza flexbox para centrar los elementos */
-    justify-content: center; /* Centra los elementos horizontalmente */
-    align-items: center; /* Centra los elementos verticalmente */
-    max-width: 70%; /* Establece un ancho máximo para que no ocupe toda la página */
-    margin: 0 auto; /* Centra el contenedor horizontalmente con márgenes automáticos */
-    min-height: 10cm; /* Establece una altura mínima de 10 cm */
-    border: 2px solid #333; /* Borde con color similar al fondo del header */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    max-width: 70%;
+    margin: 0 auto;
+    height: 15cm; /* Establece una altura específica */
+    border: 2px solid #333;
 }
 
-/* Estilo para el contenedor del juego */
 .game {
-    width: 100%; /* Establece un ancho del 100% */
-    height: 100%; /* Establece una altura del 100% */
+    width: 100%;
+    height: 100%;
+    border: 2px solid red; /* Añade un borde temporal para visualizar el tamaño */
 }
 
 canvas {
     width: 100%; /* Establece un ancho del 100% */
     height: 100%; /* Establece una altura del 100% */
-}
-
-/* Estilo para los botones de elementos */
-.botones_elementos {
-    text-align: center; /* Centrar los botones horizontalmente */
-    margin: 20px 0; /* Espaciado superior e inferior */
-}
-
-/* Estilo para los botones */
-button {
-    padding: 10px 20px; /* Espaciado interno de los botones */
-    font-size: 16px; /* Tamaño de fuente */
-    background-color: #333; /* Color de fondo de los botones */
-    color: white; /* Color del texto de los botones */
-    border: none; /* Sin borde en los botones */
-    margin: 5px; /* Espaciado entre los botones */
-    cursor: pointer; /* Cambia el cursor al pasar el ratón sobre los botones */
 }
 
 /* Estilo para el contenedor de los botones de juego */
@@ -99,13 +95,208 @@ button {
     padding-top: 15px; /* Centra la etiqueta verticalmente */
 }
 
-/* Cambia el estilo de los botones de juego cuando se les pasa el ratón por encima */
-button:hover {
-    background-color: #555; /* Cambia el color de fondo al pasar el ratón */
+/* Estilo para el contenedor de los botones de elementos */
+.botones_elementos {
+    margin-top: 10px;
+    /*Botones en parejas de dos centrados*/
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
-/* Agrega estas reglas al estilo de tu canvas en tu archivo CSS */
-canvas {
-    background-image: url('universo.jpg'); /* Ruta de la imagen de fondo */
-    background-size: cover; /* Ajusta el tamaño de la imagen para cubrir todo el canvas */
+.button-64 {
+    align-items: center;
+    background-image: linear-gradient(144deg,#AF40FF, #5B42F3 50%,#00DDEB);
+    border: 0;
+    border-radius: 8px;
+    box-shadow: rgba(151, 65, 252, 0.2) 0 15px 30px -5px;
+    box-sizing: border-box;
+    color: #FFFFFF;
+    display: flex;
+    font-family: Phantomsans, sans-serif;
+    font-size: 20px;
+    justify-content: center;
+    line-height: 1em;
+    max-width: 100%;
+    min-width: 140px;
+    padding: 3px;
+    text-decoration: none;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    white-space: nowrap;
+    cursor: pointer;
+    margin: 5px;
 }
+
+.button-64:active,
+.button-64:hover {
+    outline: 0;
+}
+
+.button-64 span {
+    background-color: rgb(5, 6, 45);
+    padding: 16px 24px;
+    border-radius: 6px;
+    width: 100%;
+    height: 100%;
+    transition: 300ms;
+}
+
+.button-64:hover span {
+    background: none;
+}
+
+@media (min-width: 768px) {
+    .button-64 {
+        font-size: 24px;
+        min-width: 196px;
+    }
+
+    .botones_elementos {
+        flex-direction: row;
+    }
+
+    .button-64:last-child {
+        margin-top: 10px; /* Añade margen superior al último botón en la fila para centrarlo debajo */
+    }
+}
+
+.button-82-pushable {
+    position: relative;
+    border: none;
+    background: transparent;
+    padding: 0;
+    cursor: pointer;
+    outline-offset: 4px;
+    transition: filter 250ms;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+  }
+  
+  .button-82-shadow {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 12px;
+    background: hsl(0deg 0% 0% / 0.25);
+    will-change: transform;
+    transform: translateY(2px);
+    transition:
+      transform
+      600ms
+      cubic-bezier(.3, .7, .4, 1);
+  }
+  
+  .button-82-edge {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 12px;
+    background: linear-gradient(
+      to left,
+      hsl(340deg 100% 16%) 0%,
+      hsl(340deg 100% 32%) 8%,
+      hsl(340deg 100% 32%) 92%,
+      hsl(340deg 100% 16%) 100%
+    );
+  }
+  
+  .button-82-front {
+    display: block;
+    position: relative;
+    padding: 12px 27px;
+    border-radius: 12px;
+    font-size: 1.1rem;
+    color: white;
+    background: hsl(345deg 100% 47%);
+    will-change: transform;
+    transform: translateY(-4px);
+    transition:
+      transform
+      600ms
+      cubic-bezier(.3, .7, .4, 1);
+  }
+  
+  @media (min-width: 768px) {
+    .button-82-front {
+      font-size: 1.25rem;
+      padding: 12px 42px;
+    }
+  }
+  
+  .button-82-pushable:hover {
+    filter: brightness(110%);
+    -webkit-filter: brightness(110%);
+  }
+  
+  .button-82-pushable:hover .button-82-front {
+    transform: translateY(-6px);
+    transition:
+      transform
+      250ms
+      cubic-bezier(.3, .7, .4, 1.5);
+  }
+  
+  .button-82-pushable:active .button-82-front {
+    transform: translateY(-2px);
+    transition: transform 34ms;
+  }
+  
+  .button-82-pushable:hover .button-82-shadow {
+    transform: translateY(4px);
+    transition:
+      transform
+      250ms
+      cubic-bezier(.3, .7, .4, 1.5);
+  }
+  
+  .button-82-pushable:active .button-82-shadow {
+    transform: translateY(1px);
+    transition: transform 34ms;
+  }
+  
+  .button-82-pushable:focus:not(:focus-visible) {
+    outline: none;
+  }
+
+  /* Estilo adicional para el contenedor del input y botón */
+.generador {
+    text-align: center; /* Centra el contenido horizontalmente */
+    margin: 20px 0; /* Espaciado superior e inferior */
+}
+
+.button-54 {
+    font-family: "Open Sans", sans-serif;
+    font-size: 16px;
+    letter-spacing: 2px;
+    text-decoration: none;
+    text-transform: uppercase;
+    color: #000;
+    cursor: pointer;
+    border: 3px solid;
+    padding: 0.25em 0.5em;
+    box-shadow: 1px 1px 0px 0px, 2px 2px 0px 0px, 3px 3px 0px 0px, 4px 4px 0px 0px, 5px 5px 0px 0px;
+    position: relative;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+  }
+  
+  .button-54:active {
+    box-shadow: 0px 0px 0px 0px;
+    top: 5px;
+    left: 5px;
+  }
+  
+  @media (min-width: 768px) {
+    .button-54 {
+      padding: 0.25em 0.75em;
+    }
+  }
