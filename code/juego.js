@@ -7,21 +7,12 @@ const imagenes = {
     cometa: new Image(),
 };
 
-const catalizadores = {
-    atomo: new Image(),
-    plasma: new Image(),
-    polvo: new Image(),
-};
-
 // Establece las rutas de las imágenes
 imagenes.asteroide.src = "images/asteroide.png";
 imagenes.cohete.src = "images/cohete.png";
 imagenes.planeta.src = "images/planeta.png";
 imagenes.ovni.src = "images/ovni.png";
 imagenes.cometa.src = "images/cometa.png";
-catalizadores.atomo.src = "images/atomo.png";
-catalizadores.plasma.src = "images/plasma.png";
-catalizadores.polvo.src = "images/polvo.png";
 
 const BORDES = 15;
 
