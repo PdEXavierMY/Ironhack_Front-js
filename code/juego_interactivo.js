@@ -8,9 +8,19 @@ document.addEventListener("DOMContentLoaded", function () {
     let userScore = 0;
     let computerScore = 0;
 
+    mostrarElemento(user_choice.value, userChoiceImg);
+
+    user_choice.addEventListener("change", function () {
+        const seleccion = user_choice.value;
+        mostrarElemento(seleccion, userChoiceImg);
+    });
+
     boton_juego.addEventListener("click", function () {
         seleccion = user_choice.value;
         const computerChoice = obtenerElementoAleatorio();
+
+        // Mostrar la imagen generada por la computadora
+        mostrarElemento(computerChoice, computerChoiceImg);
 
         const ganador = determinarGanador(seleccion, computerChoice);
 
@@ -27,6 +37,16 @@ document.addEventListener("DOMContentLoaded", function () {
             reiniciarJuego();
         }
     });
+
+    function mostrarElemento(elemento, destino) {
+        const img = document.createElement("img");
+        img.src = `images/${elemento}.png`;
+        img.alt = elemento;
+        img.style.maxWidth = "90px";
+        img.style.maxHeight = "90px";
+        destino.innerHTML = "";
+        destino.appendChild(img);
+    }
 
     function obtenerElementoAleatorio() {
         const elementos = ["asteroide", "cohete", "planeta", "ovni", "cometa"];
@@ -61,6 +81,7 @@ document.addEventListener("DOMContentLoaded", function () {
         userScore = 0;
         computerScore = 0;
         resultado.textContent = "0-0";
+        computerChoiceImg.innerHTML = "";
     }
 
 });
