@@ -206,57 +206,6 @@ function space_collision(image, otherImage) {
     changeImage(image, otherImage);
 }
 
-/*
-function changeImage(image, otherImage) {
-    
-    // Obtén las rutas de las imágenes
-    const imagePath = image.image.src;
-    const otherImagePath = otherImage.image.src;
-
-    // Comprueba las reglas y realiza el intercambio
-    if (imagePath.includes('asteroide') && otherImagePath.includes('cohete')) {
-        otherImage.image = image.image;
-    } else if (imagePath.includes('cohete') && otherImagePath.includes('asteroide')) {
-        image.image = otherImage.image;
-    } else if (imagePath.includes('asteroide') && otherImagePath.includes('planeta')) {
-        otherImage.image = image.image;
-    } else if (imagePath.includes('planeta') && otherImagePath.includes('asteroide')) {
-        image.image = otherImage.image;
-    } else if (imagePath.includes('cohete') && otherImagePath.includes('planeta')) {
-        otherImage.image = image.image;
-    } else if (imagePath.includes('planeta') && otherImagePath.includes('cohete')) {
-        image.image = otherImage.image;
-    } else if (imagePath.includes('cohete') && otherImagePath.includes('ovni')) {
-        otherImage.image = image.image;
-    } else if (imagePath.includes('ovni') && otherImagePath.includes('cohete')) {
-        image.image = otherImage.image;
-    } else if (imagePath.includes('planeta') && otherImagePath.includes('ovni')) {
-        otherImage.image = image.image;
-    } else if (imagePath.includes('ovni') && otherImagePath.includes('planeta')) {
-        image.image = otherImage.image;
-    } else if (imagePath.includes('planeta') && otherImagePath.includes('cometa')) {
-        otherImage.image = image.image;
-    } else if (imagePath.includes('cometa') && otherImagePath.includes('planeta')) {
-        image.image = otherImage.image;
-    } else if (imagePath.includes('ovni') && otherImagePath.includes('cometa')) {
-        otherImage.image = image.image;
-    } else if (imagePath.includes('cometa') && otherImagePath.includes('ovni')) {
-        image.image = otherImage.image;
-    } else if (imagePath.includes('ovni') && otherImagePath.includes('asteroide')) {
-        otherImage.image = image.image;
-    } else if (imagePath.includes('asteroide') && otherImagePath.includes('ovni')) {
-        image.image = otherImage.image;
-    } else if (imagePath.includes('cometa') && otherImagePath.includes('asteroide')) {
-        otherImage.image = image.image;
-    } else if (imagePath.includes('asteroide') && otherImagePath.includes('cometa')) {
-        image.image = otherImage.image;
-    } else if (imagePath.includes('cometa') && otherImagePath.includes('cohete')) {
-        otherImage.image = image.image;
-    } else if (imagePath.includes('cohete') && otherImagePath.includes('cometa')) {
-        image.image = otherImage.image;
-    }
-}*/
-
 function changeImage(image, otherImage) {
     // Obtén las rutas de las imágenes
     const imagePath = image.image.src;
