@@ -15,26 +15,70 @@
         </nav>
     </header>
 
+   
     <section class="introduction">
-        <h2>¡Bienvenido a Space Explorer Simulator!</h2>
+        <h2>¡Bienvenido a Space Explorer!</h2>
         <p>
-            En esta emocionante experiencia, te convertirás en un intrépido astronauta virtual, explorando los rincones más intrigantes y misteriosos del universo. Tu misión es controlar las imágenes espaciales generadas y estudiar cómo interactúan entre sí en este simulador único.
+            En Space Explorer, te sumergirás en un emocionante juego de estrategia cósmica. Explora el vasto universo y participa en enfrentamientos estelares entre cinco elementos únicos: Asteroide, Cohete, Planeta, Ovni y Cometa.
         </p>
         <p>
-            Viajarás por el vasto cosmos, experimentando con diferentes combinaciones de elementos estelares y observando cómo se desarrollan diversas situaciones cósmicas. ¿Qué sucede cuando un asteroide se cruza con un cometa? ¿O cuando un cohete se acerca a un planeta?
+            Cada elemento tiene sus propias fortalezas y debilidades. Recuerda las reglas: el Asteroide gana contra el Planeta y el Cohete, el Cohete vence al Planeta y al Ovni, el Planeta domina al Ovni y al Cometa, el Ovni triunfa sobre el Cometa y el Asteroide, y el Cometa supera al Asteroide y al Cohete.
         </p>
         <p>
-            Ajusta las condiciones del espacio, controla la velocidad y observa las fascinantes colisiones y encuentros celestiales que se despliegan ante tus ojos. Cada interacción ofrece una nueva perspectiva sobre la dinámica del universo.
+            El juego consiste en una serie de rondas. En cada ronda, seleccionas un elemento para jugar. Luego, elige un elemento para que juegue la computadora. El ganador de la ronda se determina según las reglas anteriores. El primer jugador en ganar tres rondas ganará el juego.
         </p>
         <p>
-            Demuestra tu destreza como comandante espacial al comprender y prever los movimientos de estos elementos celestiales. ¡Explora, aprende y sumérgete en la maravilla del cosmos con nuestro Space Explorer Simulator!
+            Para entender mejor el juego, puedes ver una simulación de los elementos en acción. En la simulación, puedes ajustar la velocidad de los elementos y observar cómo interactúan entre sí. Puedes experimentar con diferentes combinaciones de elementos y descubrir patrones fascinantes en las colisiones estelares. Para obtener más información sobre cómo utilizar la simulación, consulta la página de <a href="instrucciones.html">instrucciones</a>.
         </p>
         <p>
-            Para comenzar, visita la sección de "Instrucciones" para conocer las reglas por las que se rige la simulación. Después, dirígete al
-            "Simulador" para experimentar con diferentes configuraciones y estrategias. ¡Que la fuerza espacial te
-            acompañe!
+            ¡Buena suerte y que comience la exploración!
         </p>
     </section>
+
+    <section class="juego">
+        <div id="abstract">
+            <h2>Juego: Space Explorer</h2>
+            <p>
+                ¡Bienvenido al Space Explorer Simulator! Prepárate para enfrentamientos cósmicos mientras exploras la estrategia detrás de cada elemento en el juego.
+            </p>
+        </div>
+        <div class="juego_interactivo">
+            <div class="jugador">
+                <div class="form">
+                <form id="gameForm">
+                    <label for="userChoice">Elige tu elemento:</label>
+                    <select id="userChoice" name="userChoice">
+                        <option value="asteroide">Asteroide</option>
+                        <option value="cohete">Cohete</option>
+                        <option value="planeta">Planeta</option>
+                        <option value="ovni">Ovni</option>
+                        <option value="cometa">Cometa</option>
+                    </select>
+                </form>
+                </div>
+                <div class="image">
+
+                <img src="images/asteroide.png" alt="Asteroide" id="userChoiceImg">
+                </div>
+
+                <div>
+                    <button type="button" id="boton_jugar">Jugar</button>
+                </div>
+
+            </div>
+
+            <div class="resultado">
+                <h3 id="resultado">0-0</h3>
+            </div>
+
+            <div id="resultArea">
+                <p>Generó:</p>
+                <div id="computerChoiceImg">
+                </div>
+        </div>
+    </section>
+
+    <script src="code/juego_interactivo.js"></script>
 
     <footer>
         <p>&copy; 2023 Space Explorer Simulator. Todos los derechos reservados.</p>

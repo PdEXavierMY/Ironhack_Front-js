@@ -10,13 +10,21 @@ header {
     color: #ffffff;
     padding: 10px;
     text-align: center;
+    font-size: 25px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+header h1 {
+  /*subrayar el texto*/
+  text-decoration: underline;
 }
 
 nav a {
     color: #ffffff;
     text-decoration: none;
     margin: 0 15px;
-    font-size: 18px;
+    font-size: 20px;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
 }
 
 .introduction {
@@ -40,6 +48,7 @@ footer {
     position: fixed;
     bottom: 0;
     width: 100%;
+    margin-top: 25px;
 }
 
 /* Estilo para el contenedor del juego */
@@ -300,3 +309,60 @@ canvas {
       padding: 0.25em 0.75em;
     }
   }
+
+  .juego {
+    margin: auto;
+    width: 80%;
+    background-color: #ff8d58; /* Color de fondo del juego */
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centra la sección horizontalmente */
+    text-align: center; /* Centra el texto dentro de la sección */
+    margin-bottom: 100px;
+    color: #000;
+    font-size: 20px;
+}
+
+#abstract {
+    max-width: 800px; /* Ajusta el ancho máximo del abstract según tus preferencias */
+    margin-bottom: 20px; /* Espaciado inferior entre el abstract y el juego interactivo */
+}
+
+.juego_interactivo {
+    margin-bottom: 30px; /* Espaciado inferior entre el juego interactivo y el área de resultados */
+    display: flex;
+    flex-direction: row; /* Muestra juego interactivo y resultArea en línea */
+    width: 100%; /* Ajusta el ancho al 100% para asegurarte de que ocupen el espacio completo */
+}
+
+.jugador {
+    display: flex;
+    flex-direction: column; /* Apila formulario e imagen verticalmente */
+    align-items: center; /* Centra los elementos del jugador horizontalmente */
+    width: 45%; /* Ajusta el ancho del jugador según tus preferencias */
+}
+
+.form {
+    margin-bottom: 10px; /* Espaciado inferior entre el formulario y la imagen */
+}
+
+#userChoiceImg, #computerChoiceImg {
+    max-width: 90px; /* Ajusta el ancho máximo de la imagen según tus preferencias */
+    max-height: 90px; /* Ajusta la altura máxima de la imagen según tus preferencias */
+    margin-bottom: 10px; /* Espaciado inferior entre la imagen y el área de resultados */
+}
+
+.resultado {
+  width: 5%;
+  padding: 30px;
+}
+
+#resultArea {
+  display: flex;
+  flex-direction: column; /* Apila formulario e imagen verticalmente */
+  align-items: center; /* Centra los elementos del jugador horizontalmente */
+  width: 45%; /* Ajusta el ancho del resultArea según tus preferencias */
+  text-align: left; /* Alinea el contenido del área de resultados a la izquierda */
+  max-width: 300px; /* Ajusta el ancho máximo del resultArea según tus preferencias */
+}
