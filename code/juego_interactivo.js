@@ -42,8 +42,8 @@ document.addEventListener("DOMContentLoaded", function () {
         const img = document.createElement("img");
         img.src = `images/${elemento}.png`;
         img.alt = elemento;
-        img.style.maxWidth = "90px";
-        img.style.maxHeight = "90px";
+        img.style.maxWidth = "150px";
+        img.style.maxHeight = "150px";
         destino.innerHTML = "";
         destino.appendChild(img);
     }

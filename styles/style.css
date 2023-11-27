@@ -348,9 +348,10 @@ canvas {
 }
 
 #userChoiceImg, #computerChoiceImg {
-    max-width: 90px; /* Ajusta el ancho máximo de la imagen según tus preferencias */
-    max-height: 90px; /* Ajusta la altura máxima de la imagen según tus preferencias */
-    margin-bottom: 10px; /* Espaciado inferior entre la imagen y el área de resultados */
+    width: 90px; /* Ajusta el ancho máximo de la imagen según tus preferencias */
+    height: 90px; /* Ajusta la altura máxima de la imagen según tus preferencias */
+    margin-bottom: 80px; /* Espaciado inferior entre la imagen y el área de resultados */
+    padding-right: 50px;
 }
 
 .resultado {
@@ -365,6 +366,41 @@ canvas {
   width: 45%; /* Ajusta el ancho del resultArea según tus preferencias */
   text-align: left; /* Alinea el contenido del área de resultados a la izquierda */
   max-width: 300px; /* Ajusta el ancho máximo del resultArea según tus preferencias */
+}
+
+/* Estilos para dispositivos móviles */
+@media only screen and (max-width: 1000px) {
+  .juego_interactivo {
+      flex-direction: column;
+      font-size: 50px;
+      align-items: center;
+  }
+
+  .jugador,
+  #resultArea,
+  .resultado {
+      width: 100%;
+      margin: auto;
+  }
+
+  #resultArea {
+      text-align: center;
+  }
+
+  .resultado {
+      padding: 0;
+      font-size: 100px;
+  }
+
+  .resultado,
+  .jugador {
+      margin-bottom: 20px;
+  }
+
+  .jugador #userChoiceImg,
+  .jugador #computerChoiceImg {
+    margin-bottom: 80px;
+  }
 }
 
 select {
