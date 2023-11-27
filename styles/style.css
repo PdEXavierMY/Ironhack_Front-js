@@ -424,3 +424,44 @@ select.classic:focus {
   border-color: grey;
   outline: 0;
 }
+
+.custom-btn {
+  width: 130px;
+  height: 40px;
+  color: #fff;
+  border-radius: 5px;
+  padding: 10px 25px;
+  font-family: 'Lato', sans-serif;
+  font-weight: 500;
+  background: transparent;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  display: inline-block;
+   box-shadow:inset 2px 2px 2px 0px rgba(255,255,255,.5),
+   7px 7px 20px 0px rgba(0,0,0,.1),
+   4px 4px 5px 0px rgba(0,0,0,.1);
+  outline: none;
+}
+
+/* 1 */
+.btn-1 {
+  background: rgb(55, 161, 202);
+  background: linear-gradient(0deg, rgb(34, 188, 254) 0%, rgb(10, 112, 137) 100%);
+  border: none;
+}
+
+.btn-1:hover {
+   background: rgb(0,3,255);
+background: linear-gradient(0deg, rgba(0,3,255,1) 0%, rgba(2,126,251,1) 100%);
+}
+
+.instructions {
+  max-width: 800px;
+  margin: 20px auto;
+  padding: 20px;
+  background-color: #ffffff; /* Color de fondo del área de introducción */
+  color: #333333; /* Color del texto dentro del área de introducción */
+  border-radius: 10px;
+  margin-bottom: 100px;
+}
