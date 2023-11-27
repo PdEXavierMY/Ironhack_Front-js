@@ -63,6 +63,7 @@ document.addEventListener("DOMContentLoaded", function () {
         ) {
             return "usuario";
         } else if (user === computer) {
+            alert("¡Empate!");
             return "empate";
         } else {
             return "computadora";
@@ -81,7 +82,6 @@ document.addEventListener("DOMContentLoaded", function () {
         userScore = 0;
         computerScore = 0;
         resultado.textContent = "0-0";
-        computerChoiceImg.innerHTML = "";
     }
 
 });
