@@ -457,6 +457,7 @@ document.addEventListener("DOMContentLoaded", function () {
         new_image.image = imagenes.asteroide;
         images.push(new_image);
         drawImage(new_image, scale, ctx);
+        updateChart();
     });
 
     document.getElementById('cohete').addEventListener('click', function() {
@@ -464,6 +465,7 @@ document.addEventListener("DOMContentLoaded", function () {
         new_image.image = imagenes.cohete;
         images.push(new_image);
         drawImage(new_image, scale, ctx);
+        updateChart();
     });
 
     document.getElementById('planeta').addEventListener('click', function() {
@@ -471,6 +473,7 @@ document.addEventListener("DOMContentLoaded", function () {
         new_image.image = imagenes.planeta;
         images.push(new_image);
         drawImage(new_image, scale, ctx);
+        updateChart();
     });
 
     document.getElementById('ovni').addEventListener('click', function() {
@@ -478,6 +481,7 @@ document.addEventListener("DOMContentLoaded", function () {
         new_image.image = imagenes.ovni;
         images.push(new_image);
         drawImage(new_image, scale, ctx);
+        updateChart();
     });
 
     document.getElementById('cometa').addEventListener('click', function() {
@@ -485,7 +489,45 @@ document.addEventListener("DOMContentLoaded", function () {
         new_image.image = imagenes.cometa;
         images.push(new_image);
         drawImage(new_image, scale, ctx);
+        updateChart();
     });
+
+    // Función para actualizar el gráfico de barras
+    function updateChart() {
+        // Contar la cantidad de cada tipo de elemento
+        const counts = {};
+        images.forEach((image) => {
+            const elemento = getWinnerName(image.image.src);
+            counts[elemento] = (counts[elemento] || 0) + 1;
+        });
+
+        // Obtener datos para el gráfico
+        const labels = Object.keys(counts);
+        const data = Object.values(counts);
+
+        // Referencia al elemento canvas
+        const ctxChart = document.getElementById('elementChart').getContext('2d');
+
+        // Crear el gráfico de barras
+        new Chart(ctxChart, {
+            type: 'bar',
+            data: {
+                labels: labels,
+                datasets: [{
+                    label: 'Cantidad de Elementos',
+                    data: data,
+                    backgroundColor: ['red', 'blue', 'green', 'yellow', 'purple'], // Colores de las barras
+                }],
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                    },
+                },
+            },
+        });
+    }
 
     // Añade un event listener para el botón "Generar"
     document.getElementById('generar').addEventListener('click', function() {
