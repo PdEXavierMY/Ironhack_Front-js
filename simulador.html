@@ -18,14 +18,14 @@
 
     <div class="botones_juego">
         <div class="start/stop">
-            <button class="button-82-pushable" role="button" id="start">
+            <button class="button-82-pushable" id="start">
                 <span class="button-82-shadow"></span>
                 <span class="button-82-edge"></span>
                 <span class="button-82-front text">
                   Start
                 </span>
               </button>
-              <button class="button-82-pushable" role="button" id="stop">
+              <button class="button-82-pushable" id="stop">
                 <span class="button-82-shadow"></span>
                 <span class="button-82-edge"></span>
                 <span class="button-82-front text">
@@ -33,7 +33,7 @@
                 </span>
               </button>
         </div>
-        <button class="button-82-pushable" role="button" id="reset">
+        <button class="button-82-pushable" id="reset">
             <span class="button-82-shadow"></span>
             <span class="button-82-edge"></span>
             <span class="button-82-front text">
@@ -49,32 +49,26 @@
 
     <div class="game-container">
         <div class="game">
-            <canvas id="canvas" width="800px" height="600px" class="border rounded">
+            <canvas id="canvas" width="800" height="600" class="border rounded">
                 Your browser does not support the canvas element.
             </canvas>
         </div>
     </div>
 
     <div class="botones_elementos">
-        <button class="button-64" role="button" id="asteroide"><span class="text">Asteroide</span></button>
-        <button class="button-64" role="button" id="cohete"><span class="text">Cohete</span></button>
-        <button class="button-64" role="button" id="planeta"><span class="text">Planeta</span></button>
-        <button class="button-64" role="button" id="ovni"><span class="text">Ovni</span></button>
-        <button class="button-64" role="button" id="cometa"><span class="text">Cometa</span></button>
+        <button class="button-64" id="asteroide"><span class="text">Asteroide</span></button>
+        <button class="button-64" id="cohete"><span class="text">Cohete</span></button>
+        <button class="button-64" id="planeta"><span class="text">Planeta</span></button>
+        <button class="button-64" id="ovni"><span class="text">Ovni</span></button>
+        <button class="button-64" id="cometa"><span class="text">Cometa</span></button>
     </div>
 
     <!-- Agrega un input y un botón -->
     <div class="generador">
         <label for="cantidadImagenes">Generar aleatoriamente:</label>
         <input type="number" id="cantidadImagenes" name="cantidadImagenes" min="1" max="50">
-        <button class="button-54" role="button" id="generar">Generar</button>
+        <button class="button-54" id="generar">Generar</button>
     </div>
-
-    <div class="tabla">
-        <canvas id="elementChart" width="400" height="200"></canvas>
-    </div>    
-
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
     <script src="code/juego.js"></script>
 
